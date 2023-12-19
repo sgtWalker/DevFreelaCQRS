@@ -1,0 +1,6 @@
+@DevFreelaCQRS_HostAddress = http://localhost:5071
+
+GET {{DevFreelaCQRS_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
