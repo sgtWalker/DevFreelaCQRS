@@ -1,5 +1,6 @@
 ﻿using DevFreelaCQRS.Core.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace DevFreelaCQRS.Infrastructure
 {
@@ -12,5 +13,10 @@ namespace DevFreelaCQRS.Infrastructure
         public DbSet<Skill> Skills { get; set; }
         public DbSet<UserSkill> UserSkills { get; set; }
         public DbSet<ProjectComment> ProjectComments { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
     }
 }
