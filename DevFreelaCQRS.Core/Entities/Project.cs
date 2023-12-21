@@ -4,7 +4,7 @@ namespace DevFreelaCQRS.Core.Entities
 {
     public class Project :  BaseEntity
     {
-        public Project(string title, string description, Guid clientId, Guid freelancerId, decimal totalCost, ProjectStatus status, List<ProjectComment> comments)
+        public Project(string title, string description, Guid clientId, Guid freelancerId, decimal totalCost, ProjectStatus status)
         {
             Title = title;
             Description = description;
@@ -12,7 +12,7 @@ namespace DevFreelaCQRS.Core.Entities
             FreelancerId = freelancerId;
             TotalCost = totalCost;
             Status = status;
-            Comments = comments;
+            Comments = new List<ProjectComment>();
             Active = true;
             CreatedAt = DateTime.Now;
         }

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevFreelaCQRS.API", "DevFreelaCQRS\DevFreelaCQRS.API.csproj", "{EC152B20-8D7A-49F8-995B-6A701ED8F3B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevFreelaCQRS.API", "DevFreelaCQRS\DevFreelaCQRS.API.csproj", "{EC152B20-8D7A-49F8-995B-6A701ED8F3B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevFreelaCQRS.Core", "DevFreelaCQRS.Core\DevFreelaCQRS.Core.csproj", "{67AEA48D-2F83-41FB-8923-77B2DF0F6BF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevFreelaCQRS.Core", "DevFreelaCQRS.Core\DevFreelaCQRS.Core.csproj", "{67AEA48D-2F83-41FB-8923-77B2DF0F6BF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevFreelaCQRS.Infrastructure", "DevFreelaCQRS.Infrastructure\DevFreelaCQRS.Infrastructure.csproj", "{8C44AE19-5295-4169-BBA8-E453FDD3A6ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevFreelaCQRS.Infrastructure", "DevFreelaCQRS.Infrastructure\DevFreelaCQRS.Infrastructure.csproj", "{8C44AE19-5295-4169-BBA8-E453FDD3A6ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

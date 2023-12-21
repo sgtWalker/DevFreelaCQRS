@@ -2,14 +2,14 @@
 {
     public class User : BaseEntity
     {
-        public User(string fullName, string email, DateTime birthDate, List<UserSkill> skills, List<Project> ownedProjects, List<Project> freelanceProjects)
+        public User(string fullName, string email, DateTime birthDate)
         {
             FullName = fullName;
             Email = email;
             BirthDate = birthDate;
-            Skills = skills;
-            OwnedProjects = ownedProjects;
-            FreelanceProjects = freelanceProjects;
+            Skills = new List<UserSkill>();
+            OwnedProjects = new List<Project>();
+            FreelanceProjects = new List<Project>();
             Active = true;
             CreatedAt = DateTime.Now;
         }
