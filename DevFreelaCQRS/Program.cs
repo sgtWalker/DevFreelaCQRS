@@ -1,4 +1,6 @@
+using DevFreelaCQRS.Application.Commands.CreateProject;
 using DevFreelaCQRS.Infrastructure;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,8 @@ builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("DevFreelaCQRSConnection");
 builder.Services.AddDbContext<DevFreelaCQRSDbContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddMediatR(typeof(CreateProjectCommand));
 
 var app = builder.Build();
 

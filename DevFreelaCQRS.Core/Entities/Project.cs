@@ -4,14 +4,14 @@ namespace DevFreelaCQRS.Core.Entities
 {
     public class Project :  BaseEntity
     {
-        public Project(string title, string description, Guid clientId, Guid freelancerId, decimal totalCost, ProjectStatus status)
+        public Project(string title, string description, Guid clientId, Guid freelancerId, decimal totalCost)
         {
             Title = title;
             Description = description;
             ClientId = clientId;
             FreelancerId = freelancerId;
             TotalCost = totalCost;
-            Status = status;
+            Status = ProjectStatus.Created;
             Comments = new List<ProjectComment>();
             Active = true;
             CreatedAt = DateTime.Now;
@@ -28,5 +28,36 @@ namespace DevFreelaCQRS.Core.Entities
         public DateTime? FinishedAt { get; private set; }
         public ProjectStatus Status { get; private set; }
         public List<ProjectComment> Comments { get; private set; }
+
+        public void Cancel()
+        {
+            if (Status == ProjectStatus.InProgress || Status == ProjectStatus.Created)
+                Status = ProjectStatus.Cancelled;
+        }
+
+        public void Start()
+        {
+            if (Status == ProjectStatus.Created)
+            {
+                Status = ProjectStatus.InProgress;
+                StartedAt = DateTime.Now;
+            }
+        }
+
+        public void Finish()
+        {
+            if (Status == ProjectStatus.InProgress)
+            {
+                Status = ProjectStatus.Finished;
+                FinishedAt = DateTime.Now;
+            }
+        }
+
+        public void Update(string title, string description, decimal totalCost)
+        {
+            Title = title;
+            Description = description;
+            TotalCost = totalCost;
+        }
     }
 }

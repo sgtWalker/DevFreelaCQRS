@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
       <PrivateAssets>all</PrivateAssets>
@@ -22,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DevFreelaCQRS.Application\DevFreelaCQRS.Application.csproj" />
     <ProjectReference Include="..\DevFreelaCQRS.Infrastructure\DevFreelaCQRS.Infrastructure.csproj" />
   </ItemGroup>
 
