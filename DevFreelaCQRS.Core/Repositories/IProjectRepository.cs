@@ -2,12 +2,8 @@
 
 namespace DevFreelaCQRS.Core.Repositories
 {
-    public interface IProjectRepository
+    public interface IProjectRepository : IBaseRepository<Project>
     {
-        Task AddAsync(Project project);
-        Task<List<Project>> GetAllAsync();
-        Task<Project> GetByIdAsync(Guid id);
         Task<Project> GetDetailsByIdAsync(Guid id);
-        Task SaveChangesAsync();
     }
 }
