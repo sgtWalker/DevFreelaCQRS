@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace DevFreelaCQRS.Application.Commands.FinishProject
+namespace DevFreelaCQRS.Application.Commands.ProjectCommands.FinishProject
 {
     public class FinishProjectCommand : IRequest<Unit>
     {

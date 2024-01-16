@@ -1,5 +1,7 @@
-using DevFreelaCQRS.Application.Commands.CreateProject;
+using DevFreelaCQRS.Application.Commands.ProjectCommands.CreateProject;
+using DevFreelaCQRS.Core.Repositories;
 using DevFreelaCQRS.Infrastructure;
+using DevFreelaCQRS.Infrastructure.Repositories;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +16,10 @@ builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("DevFreelaCQRSConnection");
 builder.Services.AddDbContext<DevFreelaCQRSDbContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+builder.Services.AddScoped<IProjectCommentRepository, ProjectCommentRepository>();
+builder.Services.AddScoped<ISkillRepository, SkillRepository>();
+
 
 builder.Services.AddMediatR(typeof(CreateProjectCommand));
 

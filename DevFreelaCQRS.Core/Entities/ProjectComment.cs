@@ -1,4 +1,6 @@
-﻿namespace DevFreelaCQRS.Core.Entities
+﻿using System.Data;
+
+namespace DevFreelaCQRS.Core.Entities
 {
     public class ProjectComment : BaseEntity
     {
@@ -16,5 +18,10 @@
         public Project Project { get; private set; }
         public Guid UserId { get; private set; }
         public User User { get; private set; }
+        
+        public void Update(string content)
+        {
+            Content = content;
+        }
     }
 }

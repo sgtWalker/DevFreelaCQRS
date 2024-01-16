@@ -16,18 +16,12 @@ namespace DevFreelaCQRS.Infrastructure.Repositories
         public async Task AddAsync(Project project)
         {
             await _context.Projects.AddAsync(project);
-            await _context.SaveChangesAsync();
+            await SaveChangesAsync();
         }
 
-        public async Task<List<Project>> GetAllAsync()
-        {
-            return await _context.Projects.ToListAsync();
-        }
+        public async Task<List<Project>> GetAllAsync() => await _context.Projects.ToListAsync();
 
-        public async Task<Project> GetByIdAsync(Guid id)
-        {
-            return await _context.Projects.SingleOrDefaultAsync(p => p.Id == id);
-        }
+        public async Task<Project> GetByIdAsync(Guid id) => await _context.Projects.SingleOrDefaultAsync(p => p.Id == id);
 
         public async Task<Project> GetDetailsByIdAsync(Guid id)
         {
@@ -37,9 +31,6 @@ namespace DevFreelaCQRS.Infrastructure.Repositories
                 .SingleOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task SaveChangesAsync()
-        {
-            await _context.SaveChangesAsync();
-        }
+        public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
     }
 }

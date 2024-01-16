@@ -1,7 +1,7 @@
 ﻿using DevFreelaCQRS.Core.Repositories;
 using MediatR;
 
-namespace DevFreelaCQRS.Application.Commands.DeleteProject
+namespace DevFreelaCQRS.Application.Commands.ProjectCommands.DeleteProject
 {
     public class DeleteProjectCommandHandler : IRequestHandler<DeleteProjectCommand, Unit>
     {
@@ -19,7 +19,7 @@ namespace DevFreelaCQRS.Application.Commands.DeleteProject
             if (project == null)
                 return Unit.Value;
 
-            project.Cancel();
+            project.Delete();
             await _repository.SaveChangesAsync();
 
             return Unit.Value;

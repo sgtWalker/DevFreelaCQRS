@@ -1,27 +1,27 @@
 ﻿using DevFreelaCQRS.Core.Repositories;
 using MediatR;
 
-namespace DevFreelaCQRS.Application.Commands.FinishProject
+namespace DevFreelaCQRS.Application.Commands.ProjectCommands.StartProject
 {
-    public class FinishProjectCommandHandler : IRequestHandler<FinishProjectCommand, Unit>
+    public class StartProjectCommandHandler : IRequestHandler<StartProjectCommand, Unit>
     {
         private readonly IProjectRepository _repository;
 
-        public FinishProjectCommandHandler(IProjectRepository repository)
+        public StartProjectCommandHandler(IProjectRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<Unit> Handle(FinishProjectCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(StartProjectCommand request, CancellationToken cancellationToken)
         {
             var project = await _repository.GetByIdAsync(request.Id);
 
             if (project == null)
                 return Unit.Value;
 
-            project.Finish();
-
+            project.Start();
             await _repository.SaveChangesAsync();
+
             return Unit.Value;
         }
     }

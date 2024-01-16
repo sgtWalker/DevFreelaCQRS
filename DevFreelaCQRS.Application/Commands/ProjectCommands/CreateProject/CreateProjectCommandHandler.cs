@@ -2,7 +2,7 @@
 using DevFreelaCQRS.Core.Repositories;
 using MediatR;
 
-namespace DevFreelaCQRS.Application.Commands.CreateProject
+namespace DevFreelaCQRS.Application.Commands.ProjectCommands.CreateProject
 {
     public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand, Guid>
     {

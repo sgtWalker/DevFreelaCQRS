@@ -1,25 +1,25 @@
 ﻿using DevFreelaCQRS.Core.Repositories;
 using MediatR;
 
-namespace DevFreelaCQRS.Application.Commands.UpdateProject
+namespace DevFreelaCQRS.Application.Commands.ProjectCommands.CancelProject
 {
-    public class UpdateProjectCommandHandler : IRequestHandler<UpdateProjectCommand, Unit>
+    public class CancelProjectCommandHandler : IRequestHandler<CancelProjectCommand, Unit>
     {
         private readonly IProjectRepository _repository;
 
-        public UpdateProjectCommandHandler(IProjectRepository repository)
+        public CancelProjectCommandHandler(IProjectRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<Unit> Handle(UpdateProjectCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CancelProjectCommand request, CancellationToken cancellationToken)
         {
             var project = await _repository.GetByIdAsync(request.Id);
 
             if (project == null)
                 return Unit.Value;
 
-            project.Update(request.Title, request.Description, request.TotalCost);
+            project.Cancel();
             await _repository.SaveChangesAsync();
 
             return Unit.Value;
