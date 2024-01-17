@@ -18,9 +18,6 @@
     <Folder Include="Commands\SkillCommands\CreateSkill\" />
     <Folder Include="Commands\SkillCommands\DeleteSkill\" />
     <Folder Include="Commands\SkillCommands\UpdateSkill\" />
-    <Folder Include="Commands\UserCommands\CreateUser\" />
-    <Folder Include="Commands\UserCommands\DeleteUser\" />
-    <Folder Include="Commands\UserCommands\UpdateUser\" />
     <Folder Include="Queries\CommentQueries\GetAllCommentsByProjectId\" />
     <Folder Include="Queries\CommentQueries\GetAllCommentsByUserId\" />
     <Folder Include="Queries\CommentQueries\GetCommentById\" />
