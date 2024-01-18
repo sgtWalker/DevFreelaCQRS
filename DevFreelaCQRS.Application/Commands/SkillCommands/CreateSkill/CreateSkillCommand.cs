@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace DevFreelaCQRS.Application.Commands.SkillCommands.CreateSkill
 {
-    internal class CreateSkillCommand
+    public class CreateSkillCommand : IRequest<Guid>
     {
+        public CreateSkillCommand(string description) 
+        {
+            Description = description;
+        } 
+
+        public string Description { get; set; }
     }
 }

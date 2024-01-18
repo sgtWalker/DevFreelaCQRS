@@ -15,17 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\SkillCommands\CreateSkill\" />
-    <Folder Include="Commands\SkillCommands\DeleteSkill\" />
-    <Folder Include="Commands\SkillCommands\UpdateSkill\" />
     <Folder Include="Queries\CommentQueries\GetAllCommentsByProjectId\" />
     <Folder Include="Queries\CommentQueries\GetAllCommentsByUserId\" />
     <Folder Include="Queries\CommentQueries\GetCommentById\" />
     <Folder Include="Queries\CommentQueries\GetCommentByProjectIdAndUserId\" />
-    <Folder Include="Queries\ProjectQueries\GetAllProjectsByFreelancerId\" />
-    <Folder Include="Queries\ProjectQueries\GetAllProjectsByClientId\" />
-    <Folder Include="Queries\ProjectQueries\GetAllProjectsByTitle\" />
-    <Folder Include="Queries\ProjectQueries\GetAllProjectsByDescription\" />
     <Folder Include="Queries\SkillQueries\GetAllSkills\" />
     <Folder Include="Queries\SkillQueries\GetSkillById\" />
     <Folder Include="Queries\SkillQueries\GetAllSkillsByDescription\" />
