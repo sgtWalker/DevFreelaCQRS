@@ -14,20 +14,4 @@
     <ProjectReference Include="..\DevFreelaCQRS.Core\DevFreelaCQRS.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Queries\CommentQueries\GetAllCommentsByProjectId\" />
-    <Folder Include="Queries\CommentQueries\GetAllCommentsByUserId\" />
-    <Folder Include="Queries\CommentQueries\GetCommentById\" />
-    <Folder Include="Queries\CommentQueries\GetCommentByProjectIdAndUserId\" />
-    <Folder Include="Queries\SkillQueries\GetAllSkills\" />
-    <Folder Include="Queries\SkillQueries\GetSkillById\" />
-    <Folder Include="Queries\SkillQueries\GetAllSkillsByDescription\" />
-    <Folder Include="Queries\UserQueries\GetAllUsers\" />
-    <Folder Include="Queries\UserQueries\GetUserById\" />
-    <Folder Include="Queries\UserQueries\GetAllUsersByFullName\" />
-    <Folder Include="Queries\UserQueries\GetUserByEmail\" />
-    <Folder Include="Queries\UserQueries\GetAllUsersByBirthDate\" />
-    <Folder Include="Queries\UserQueries\GetUserSkills\" />
-  </ItemGroup>
-
 </Project>

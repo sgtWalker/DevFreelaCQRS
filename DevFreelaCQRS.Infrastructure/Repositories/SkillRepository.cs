@@ -23,6 +23,8 @@ namespace DevFreelaCQRS.Infrastructure.Repositories
         
         public async Task<Skill> GetByIdAsync(Guid id) => await _context.Skills.SingleOrDefaultAsync(s => s.Id == id);
 
+        public async Task<List<Skill>> GetSkillsByDescriptionAsync(string description) => await _context.Skills.Where(s => s.Description.Contains(description)).ToListAsync();
+        
         public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
     }
 }

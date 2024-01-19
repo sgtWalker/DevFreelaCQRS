@@ -2,18 +2,18 @@
 using DevFreelaCQRS.Core.Repositories;
 using MediatR;
 
-namespace DevFreelaCQRS.Application.Queries.ProjectQueries.GetAllProjectsByDescription
+namespace DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectsByDescription
 {
-    public class GetAllProjectsByDescriptionQueryHandler : IRequestHandler<GetAllProjectsByDescriptionQuery, List<ProjectViewModel>>
+    public class GetProjectsByDescriptionQueryHandler : IRequestHandler<GetProjectsByDescriptionQuery, List<ProjectViewModel>>
     {
         private readonly IProjectRepository _repository;
 
-        public GetAllProjectsByDescriptionQueryHandler(IProjectRepository repository)
+        public GetProjectsByDescriptionQueryHandler(IProjectRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<List<ProjectViewModel>> Handle(GetAllProjectsByDescriptionQuery request, CancellationToken cancellationToken)
+        public async Task<List<ProjectViewModel>> Handle(GetProjectsByDescriptionQuery request, CancellationToken cancellationToken)
         {
             var projects = await _repository.GetAllByDescriptionAsync(request.Description);
 

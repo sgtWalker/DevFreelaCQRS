@@ -2,18 +2,18 @@
 using DevFreelaCQRS.Core.Repositories;
 using MediatR;
 
-namespace DevFreelaCQRS.Application.Queries.ProjectQueries.GetAllProjectsByFreelancerId
+namespace DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectsByFreelancerId
 {
-    public class GetAllProjectsByFreelancerIdQueryHandler : IRequestHandler<GetAllProjectsByFreelancerIdQuery, List<ProjectViewModel>>
+    public class GetProjectsByFreelancerIdQueryHandler : IRequestHandler<GetProjectsByFreelancerIdQuery, List<ProjectViewModel>>
     {
         private readonly IProjectRepository _repository;
 
-        public GetAllProjectsByFreelancerIdQueryHandler(IProjectRepository repository)
+        public GetProjectsByFreelancerIdQueryHandler(IProjectRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<List<ProjectViewModel>> Handle(GetAllProjectsByFreelancerIdQuery request, CancellationToken cancellationToken)
+        public async Task<List<ProjectViewModel>> Handle(GetProjectsByFreelancerIdQuery request, CancellationToken cancellationToken)
         {
             var projects = await _repository.GetAllByFreelancerIdAsync(request.FreelancerId);
 

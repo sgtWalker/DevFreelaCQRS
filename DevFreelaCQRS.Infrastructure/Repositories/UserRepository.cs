@@ -23,7 +23,18 @@ namespace DevFreelaCQRS.Infrastructure.Repositories
 
         public async Task<User> GetByIdAsync(Guid id) => await _context.Users.SingleOrDefaultAsync(u => u.Id == id);
 
-        public async Task<List<UserSkill>> GetUserSkillsAsync(Guid id) => await _context.UserSkills.Where(us => us.UserId == id).ToListAsync();
+        public async Task<User> GetUserByEmailAsync(string email) => await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
+
+        public async Task<List<User>> GetUsersByBirthDate(DateTime birthDate) => await _context.Users.Where(u => u.BirthDate == birthDate).ToListAsync();
+
+        public async Task<List<User>> GetUsersByFullNameAsync(string fullName) => await _context.Users.Where(u => u.FullName.Contains(fullName)).ToListAsync();
+
+        public async Task<User> GetUserSkillsAsync(Guid userId)
+        {
+            return await _context.Users
+                .Include(u => u.Skills)
+                .SingleOrDefaultAsync(u => u.Id == userId);
+        }
 
         public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
     }
