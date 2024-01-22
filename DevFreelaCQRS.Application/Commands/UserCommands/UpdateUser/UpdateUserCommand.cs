@@ -4,9 +4,8 @@ namespace DevFreelaCQRS.Application.Commands.UserCommands.UpdateUser
 {
     public class UpdateUserCommand : IRequest<Unit>
     {
-        public UpdateUserCommand(Guid id, string fullName, string email, DateTime birthDate)
+        public UpdateUserCommand(string fullName, string email, DateTime birthDate)
         {
-            Id = id;
             FullName = fullName;
             Email = email;
             BirthDate = birthDate;

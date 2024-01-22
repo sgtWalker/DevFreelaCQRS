@@ -19,6 +19,7 @@ builder.Services.AddDbContext<DevFreelaCQRSDbContext>(options => options.UseSqlS
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<IProjectCommentRepository, ProjectCommentRepository>();
 builder.Services.AddScoped<ISkillRepository, SkillRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
 builder.Services.AddMediatR(typeof(CreateProjectCommand));

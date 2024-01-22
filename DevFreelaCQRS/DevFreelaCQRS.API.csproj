@@ -19,10 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DevFreelaCQRS.Application\DevFreelaCQRS.Application.csproj" />
     <ProjectReference Include="..\DevFreelaCQRS.Infrastructure\DevFreelaCQRS.Infrastructure.csproj" />
   </ItemGroup>

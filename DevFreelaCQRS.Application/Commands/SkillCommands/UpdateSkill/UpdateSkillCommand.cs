@@ -6,7 +6,6 @@ namespace DevFreelaCQRS.Application.Commands.SkillCommands.UpdateSkill
     {
         public UpdateSkillCommand(Guid id, string description)
         {
-            Id = id;
             Description = description;
         }
 
