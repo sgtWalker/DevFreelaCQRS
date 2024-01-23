@@ -1,7 +1,9 @@
 using DevFreelaCQRS.Application.Commands.ProjectCommands.CreateProject;
+using DevFreelaCQRS.Application.Validators.Project;
 using DevFreelaCQRS.Core.Repositories;
 using DevFreelaCQRS.Infrastructure;
 using DevFreelaCQRS.Infrastructure.Repositories;
+using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,8 +25,10 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
 builder.Services.AddMediatR(typeof(CreateProjectCommand));
+builder.Services.AddValidatorsFromAssemblyContaining<CreateProjectCommandValidator>();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
