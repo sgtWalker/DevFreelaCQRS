@@ -8,5 +8,6 @@ namespace DevFreelaCQRS.Core.Repositories
         Task<User> GetUserByEmailAsync(string email);
         Task<List<User>> GetUsersByBirthDate(DateTime birthDate);
         Task<List<User>> GetUsersByFullNameAsync(string fullName);
+        Task<User> GetUserByEmailAndPasswordAsync(string email, string passwordHash);
     }
 }

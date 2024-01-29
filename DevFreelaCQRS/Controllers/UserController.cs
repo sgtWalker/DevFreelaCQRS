@@ -1,6 +1,7 @@
 ﻿using DevFreelaCQRS.Application.Commands.UserCommands.AddSkillToUser;
 using DevFreelaCQRS.Application.Commands.UserCommands.CreateUser;
 using DevFreelaCQRS.Application.Commands.UserCommands.DeleteUser;
+using DevFreelaCQRS.Application.Commands.UserCommands.LoginUser;
 using DevFreelaCQRS.Application.Commands.UserCommands.RemoveSkillToUser;
 using DevFreelaCQRS.Application.Commands.UserCommands.UpdateUser;
 using DevFreelaCQRS.Application.Queries.UserQueries.GetAllUsers;
@@ -128,6 +129,17 @@ namespace DevFreelaCQRS.API.Controllers
             command.Id = id;
             await _mediator.Send(command);
             return NoContent();
+        }
+
+        [HttpPut("login")]
+        public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
+        {
+            var loginUser = await _mediator.Send(command);
+
+            if (loginUser == null) 
+                return BadRequest();
+
+            return Ok(loginUser);
         }
         #endregion
 

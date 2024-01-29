@@ -1,11 +1,14 @@
+using DevFreelaCQRS.API.Filters;
 using DevFreelaCQRS.Application.Commands.ProjectCommands.CreateProject;
 using DevFreelaCQRS.Application.Validators.Project;
+using DevFreelaCQRS.Application.Validators.User;
 using DevFreelaCQRS.Core.Repositories;
 using DevFreelaCQRS.Core.Services;
 using DevFreelaCQRS.Infrastructure;
 using DevFreelaCQRS.Infrastructure.Auth;
 using DevFreelaCQRS.Infrastructure.Repositories;
 using FluentValidation;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,7 +30,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddMediatR(typeof(CreateProjectCommand));
-builder.Services.AddValidatorsFromAssemblyContaining<CreateProjectCommandValidator>();
+builder.Services.AddControllers(options => options.Filters.Add(typeof(ValidationFilter)))
+    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateUserCommandValidator>());
 
 var app = builder.Build();
 

@@ -36,6 +36,8 @@ namespace DevFreelaCQRS.Infrastructure.Repositories
                 .SingleOrDefaultAsync(u => u.Id == userId);
         }
 
+        public async Task<User> GetUserByEmailAndPasswordAsync(string email, string passwordHash) => await _context.Users.SingleOrDefaultAsync(u => u.Email == email && u.Password == passwordHash);
+        
         public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
     }
 }
