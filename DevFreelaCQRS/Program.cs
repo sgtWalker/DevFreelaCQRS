@@ -1,7 +1,9 @@
 using DevFreelaCQRS.Application.Commands.ProjectCommands.CreateProject;
 using DevFreelaCQRS.Application.Validators.Project;
 using DevFreelaCQRS.Core.Repositories;
+using DevFreelaCQRS.Core.Services;
 using DevFreelaCQRS.Infrastructure;
+using DevFreelaCQRS.Infrastructure.Auth;
 using DevFreelaCQRS.Infrastructure.Repositories;
 using FluentValidation;
 using MediatR;
@@ -22,7 +24,7 @@ builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<IProjectCommentRepository, ProjectCommentRepository>();
 builder.Services.AddScoped<ISkillRepository, SkillRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddMediatR(typeof(CreateProjectCommand));
 builder.Services.AddValidatorsFromAssemblyContaining<CreateProjectCommandValidator>();

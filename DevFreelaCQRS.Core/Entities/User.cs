@@ -2,7 +2,7 @@
 {
     public class User : BaseEntity
     {
-        public User(string fullName, string email, DateTime birthDate)
+        public User(string fullName, string email, DateTime birthDate, string password, string role)
         {
             FullName = fullName;
             Email = email;
@@ -12,6 +12,8 @@
             FreelanceProjects = new List<Project>();
             Active = true;
             CreatedAt = DateTime.Now;
+            Password = password;
+            Role = role;
         }
 
         public string FullName { get; private set; }
@@ -21,6 +23,8 @@
         public List<Project> OwnedProjects { get; private set; }
         public List<Project> FreelanceProjects { get; private set; }
         public List<ProjectComment> Comments { get; private set; }
+        public string Password { get; private set; }
+        public string Role { get; private set; }
 
         public void Update(string fullName, string email, DateTime birthDate)
         { 
