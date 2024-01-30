@@ -17,6 +17,7 @@ using DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectsByDescription;
 using DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectsByFreelancerId;
 using DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectsByTitle;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevFreelaCQRS.API.Controllers
@@ -33,6 +34,7 @@ namespace DevFreelaCQRS.API.Controllers
 
         #region [Gets]
         [HttpGet]
+        [Authorize(Roles = "client, freelancer")]
         public async Task<IActionResult> Get()
         {
             var getAllProjectsQuery = new GetAllProjectsQuery();
@@ -43,6 +45,7 @@ namespace DevFreelaCQRS.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "client, freelancer")]
         public async Task<IActionResult> GetById(Guid id)
         {
             var query = new GetProjectByIdQuery(id);
@@ -56,6 +59,7 @@ namespace DevFreelaCQRS.API.Controllers
         }
 
         [HttpGet("projectsByClient/{clientId}")]
+        [Authorize(Roles = "client")]
         public async Task<IActionResult> GetByClientId(Guid clientId)
         {
             var query = new GetProjectsByClientIdQuery(clientId);
@@ -69,6 +73,7 @@ namespace DevFreelaCQRS.API.Controllers
         }
 
         [HttpGet("projectsByDescription/{description}")]
+        [Authorize(Roles = "client, freelancer")]
         public async Task<IActionResult> GetByDescription(string description)
         {
             var query = new GetProjectsByDescriptionQuery(description);
@@ -82,6 +87,7 @@ namespace DevFreelaCQRS.API.Controllers
         }
 
         [HttpGet("projectsByFreelancer/{freelancerId}")]
+        [Authorize(Roles = "client, freelancer")]
         public async Task<IActionResult> GetByFreelancerId(Guid freelancerId)
         {
             var query = new GetProjectsByFreelancerIdQuery(freelancerId);
@@ -95,6 +101,7 @@ namespace DevFreelaCQRS.API.Controllers
         }
 
         [HttpGet("projectsByTitle/{title}")]
+        [Authorize(Roles = "client, freelancer")]
         public async Task<IActionResult> GetByTitle(string title)
         {
             var query = new GetProjectsByTitleQuery(title);
@@ -108,6 +115,7 @@ namespace DevFreelaCQRS.API.Controllers
         }
 
         [HttpGet("commentById/{id}")]
+        [Authorize(Roles = "client, freelancer")]
         public async Task<IActionResult> GetCommentById(Guid id)
         {
             var query = new GetProjectCommentByIdQuery(id);
@@ -121,6 +129,7 @@ namespace DevFreelaCQRS.API.Controllers
         }
 
         [HttpGet("commentsByProjectId/{projectId}")]
+        [Authorize(Roles = "client, freelancer")]
         public async Task<IActionResult> GetCommentsByProjectId(Guid projectId)
         {
             var query = new GetProjectCommentsByProjectIdQuery(projectId);
@@ -134,6 +143,7 @@ namespace DevFreelaCQRS.API.Controllers
         }
 
         [HttpGet("commentsByProjectIdAndUserId")]
+        [Authorize(Roles = "client, freelancer")]
         public async Task<IActionResult> GetCommentsByProjectIdAndUserId(Guid projectId, Guid userId)
         {
             var query = new GetProjectCommentsByProjectIdAndUserIdQuery(projectId, userId);
@@ -147,6 +157,7 @@ namespace DevFreelaCQRS.API.Controllers
         }
 
         [HttpGet("commentsByUserId/{userId}")]
+        [Authorize(Roles = "client, freelancer")]
         public async Task<IActionResult> GetCommentsByUserId(Guid userId)
         {
             var query = new GetProjectCommentsByUserIdQuery(userId);
@@ -162,6 +173,7 @@ namespace DevFreelaCQRS.API.Controllers
 
         #region [Post]
         [HttpPost]
+        [Authorize(Roles = "client")]
         public async Task<IActionResult> Post([FromBody] CreateProjectCommand command)
         {
             var id = await _mediator.Send(command);
@@ -169,6 +181,7 @@ namespace DevFreelaCQRS.API.Controllers
         }
 
         [HttpPost("comment")]
+        [Authorize(Roles = "client, freelancer")]
         public async Task<IActionResult> PostComment([FromBody] CreateProjectCommentCommand command)
         {
             var id = await _mediator.Send(command);
@@ -178,6 +191,7 @@ namespace DevFreelaCQRS.API.Controllers
 
         #region [Puts]
         [HttpPut("{id}")]
+        [Authorize(Roles = "client")]
         public async Task<IActionResult> Put(Guid id, [FromBody] UpdateProjectCommand command)
         {
             command.Id = id;
@@ -187,6 +201,7 @@ namespace DevFreelaCQRS.API.Controllers
         }
 
         [HttpPut("cancel/{id}")]
+        [Authorize(Roles = "client")]
         public async Task<IActionResult> Cancel(Guid id)
         {
             var command = new StartProjectCommand(id);
@@ -196,6 +211,7 @@ namespace DevFreelaCQRS.API.Controllers
         }
 
         [HttpPut("start/{id}")]
+        [Authorize(Roles = "client")]
         public async Task<IActionResult> Start(Guid id)
         {
             var command = new StartProjectCommand(id);
@@ -205,6 +221,7 @@ namespace DevFreelaCQRS.API.Controllers
         }
 
         [HttpPut("finish/{id}")]
+        [Authorize(Roles = "client")]
         public async Task<IActionResult> Finish(Guid id)
         {
             var command = new FinishProjectCommand(id);
@@ -214,6 +231,7 @@ namespace DevFreelaCQRS.API.Controllers
         }
 
         [HttpPut("updateComment/{id}")]
+        [Authorize(Roles = "client, freelancer")]
         public async Task<IActionResult> UpdateComment(Guid id, [FromBody] UpdateProjectCommentCommand command)
         {
             command.Id = id;
@@ -225,6 +243,7 @@ namespace DevFreelaCQRS.API.Controllers
 
         #region [Deletes]
         [HttpDelete("{id}")]
+        [Authorize(Roles = "client")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var command = new DeleteProjectCommand(id);
@@ -234,6 +253,7 @@ namespace DevFreelaCQRS.API.Controllers
         }
 
         [HttpDelete("deleteComment/{id}")]
+        [Authorize(Roles = "client, freelancer")]
         public async Task<IActionResult> DeleteComment(Guid id)
         {
             var command = new DeleteProjectCommentCommand(id);

@@ -13,7 +13,7 @@ namespace DevFreelaCQRS.Application.Validators
         public static bool IsAValidDate(DateTime date)
         {
             var now = DateTime.Now;
-            return date.Year <= now.Year && date.Month <= now.Month && date.Day <= now.Day && date != DateTime.MinValue;
+            return date.Year <= now.Year && date != DateTime.MinValue;
         }
 
         public static bool IsInvalidGuid(Guid guid) => !Guid.TryParse(guid.ToString(), out _);

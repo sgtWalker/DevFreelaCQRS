@@ -4,14 +4,14 @@ using DevFreelaCQRS.Application.Commands.SkillCommands.UpdateSkill;
 using DevFreelaCQRS.Application.Queries.SkillQueries.GetAllSkills;
 using DevFreelaCQRS.Application.Queries.SkillQueries.GetSkillById;
 using DevFreelaCQRS.Application.Queries.SkillQueries.GetSkillsByDescription;
-using DevFreelaCQRS.Application.Queries.UserQueries.GetUserById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevFreelaCQRS.API.Controllers
 {
     [Route("api/skills")]
-    [ApiController]
+    [Authorize]
     public class SkillsController : ControllerBase
     {
         private readonly IMediator _mediator;

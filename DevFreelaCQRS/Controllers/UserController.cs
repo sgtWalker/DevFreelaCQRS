@@ -11,12 +11,13 @@ using DevFreelaCQRS.Application.Queries.UserQueries.GetUsersByBirthDate;
 using DevFreelaCQRS.Application.Queries.UserQueries.GetUsersByFullName;
 using DevFreelaCQRS.Application.Queries.UserQueries.GetUserSkills;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevFreelaCQRS.API.Controllers
 {
     [Route("api/users")]
-    [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -106,6 +107,7 @@ namespace DevFreelaCQRS.API.Controllers
         #region [Posts]
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Post([FromBody] CreateUserCommand command)
         {
             var id = await _mediator.Send(command);
@@ -120,6 +122,18 @@ namespace DevFreelaCQRS.API.Controllers
 
             return NoContent();
         }
+        
+        [HttpPost("login")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
+        {
+            var loginUser = await _mediator.Send(command);
+
+            if (loginUser == null)
+                return BadRequest();
+
+            return Ok(loginUser);
+        }
         #endregion
 
         #region [Puts]
@@ -129,17 +143,6 @@ namespace DevFreelaCQRS.API.Controllers
             command.Id = id;
             await _mediator.Send(command);
             return NoContent();
-        }
-
-        [HttpPut("login")]
-        public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
-        {
-            var loginUser = await _mediator.Send(command);
-
-            if (loginUser == null) 
-                return BadRequest();
-
-            return Ok(loginUser);
         }
         #endregion
 
