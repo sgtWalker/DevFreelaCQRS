@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevFreelaCQRS.Core", "DevFr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevFreelaCQRS.Infrastructure", "DevFreelaCQRS.Infrastructure\DevFreelaCQRS.Infrastructure.csproj", "{8C44AE19-5295-4169-BBA8-E453FDD3A6ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevFreelaCQRS.Application", "DevFreelaCQRS.Application\DevFreelaCQRS.Application.csproj", "{C0320F72-150A-4143-96A3-FC9E90D6BA1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevFreelaCQRS.Application", "DevFreelaCQRS.Application\DevFreelaCQRS.Application.csproj", "{C0320F72-150A-4143-96A3-FC9E90D6BA1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevFreelaCQRS.UnitTests", "DevFreelaCQRS.UnitTests\DevFreelaCQRS.UnitTests.csproj", "{19D25177-4C4B-4E69-85CF-BFA82596E6E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C0320F72-150A-4143-96A3-FC9E90D6BA1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0320F72-150A-4143-96A3-FC9E90D6BA1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0320F72-150A-4143-96A3-FC9E90D6BA1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19D25177-4C4B-4E69-85CF-BFA82596E6E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19D25177-4C4B-4E69-85CF-BFA82596E6E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19D25177-4C4B-4E69-85CF-BFA82596E6E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19D25177-4C4B-4E69-85CF-BFA82596E6E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
