@@ -20,7 +20,7 @@ namespace DevFreelaCQRS.Application.Validators.ProjectComment
                 .WithMessage("ProjectId é obrigatório.");
 
             RuleFor(p => p.ProjectId)
-                .Must(ValidatorsHelper.IsInvalidGuid)
+                .Must(ValidatorsHelper.IsValidGuid)
                 .WithMessage("ProjectId inválido.");
 
             RuleFor(p => p.UserId)
@@ -28,7 +28,7 @@ namespace DevFreelaCQRS.Application.Validators.ProjectComment
                 .WithMessage("UserId é obrigatório.");
 
             RuleFor(p => p.UserId)
-                .Must(ValidatorsHelper.IsInvalidGuid)
+                .Must(ValidatorsHelper.IsValidGuid)
                 .WithMessage("UserId inválido.");
 
         }

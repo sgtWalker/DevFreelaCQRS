@@ -12,7 +12,7 @@ namespace DevFreelaCQRS.Application.Validators.User
                 .WithMessage("userId é obrigatório.");
 
             RuleFor(u => u.UserId)
-                .Must(ValidatorsHelper.IsInvalidGuid)
+                .Must(ValidatorsHelper.IsValidGuid)
                 .WithMessage("userId é inválido");
 
             RuleFor(u => u.SkillId)
@@ -20,7 +20,7 @@ namespace DevFreelaCQRS.Application.Validators.User
                 .WithMessage("skillId é obrigatório.");
 
             RuleFor(u => u.SkillId)
-                .Must(ValidatorsHelper.IsInvalidGuid)
+                .Must(ValidatorsHelper.IsValidGuid)
                 .WithMessage("skillId é inválido");
         }
     }

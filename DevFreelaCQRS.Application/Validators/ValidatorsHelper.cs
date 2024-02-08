@@ -16,7 +16,7 @@ namespace DevFreelaCQRS.Application.Validators
             return date.Year <= now.Year && date != DateTime.MinValue;
         }
 
-        public static bool IsInvalidGuid(Guid guid) => !Guid.TryParse(guid.ToString(), out _);
+        public static bool IsValidGuid(Guid guid) => Guid.TryParse(guid.ToString(), out _);
 
     }
 }

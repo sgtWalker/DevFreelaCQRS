@@ -12,7 +12,7 @@ namespace DevFreelaCQRS.Application.Validators.User
                 .WithMessage("Id é obrigatório.");
 
             RuleFor(u => u.Id)
-                .Must(ValidatorsHelper.IsInvalidGuid)
+                .Must(ValidatorsHelper.IsValidGuid)
                 .WithMessage("Id é inválido.");
         }
     }

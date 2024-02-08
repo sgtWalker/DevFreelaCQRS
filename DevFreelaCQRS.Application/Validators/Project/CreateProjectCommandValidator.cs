@@ -24,7 +24,7 @@ namespace DevFreelaCQRS.Application.Validators.Project
                 .WithMessage("O clientId é obrigatório.");
 
             RuleFor(p => p.ClientId)
-                .Must(ValidatorsHelper.IsInvalidGuid)
+                .Must(ValidatorsHelper.IsValidGuid)
                 .WithMessage("O clientId é inválido.");
 
             RuleFor(p => p.FreelancerId)
@@ -32,7 +32,7 @@ namespace DevFreelaCQRS.Application.Validators.Project
                 .WithMessage("O freelancerId é obrigatório.");
 
             RuleFor(p => p.FreelancerId)
-                .Must(ValidatorsHelper.IsInvalidGuid)
+                .Must(ValidatorsHelper.IsValidGuid)
                 .WithMessage("O freelancerId é inválido.");            
         }
     }
