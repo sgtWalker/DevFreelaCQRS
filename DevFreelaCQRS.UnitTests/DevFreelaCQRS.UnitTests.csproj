@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -24,7 +24,10 @@
 
   <ItemGroup>
     <Folder Include="Application\" />
-    <Folder Include="Core\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DevFreelaCQRS.Core\DevFreelaCQRS.Core.csproj" />
   </ItemGroup>
 
 </Project>
