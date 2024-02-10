@@ -12,6 +12,7 @@ using DevFreelaCQRS.Application.Queries.ProjectCommentQueries.GetProjectComments
 using DevFreelaCQRS.Application.Queries.ProjectCommentQueries.GetProjectCommentsByUserId;
 using DevFreelaCQRS.Application.Queries.ProjectQueries.GetAllProjects;
 using DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectById;
+using DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectDetailsById;
 using DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectsByClientId;
 using DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectsByDescription;
 using DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectsByFreelancerId;
@@ -56,6 +57,20 @@ namespace DevFreelaCQRS.API.Controllers
                 return NotFound();
 
             return Ok(project);
+        }
+
+        [HttpGet("{id}")]
+        [Authorize(Roles = "client, freelancer")]
+        public async Task<IActionResult> GetDetailsById(Guid id)
+        {
+            var query = new GetProjectDetailsByIdQuery(id);
+
+            var projectDetails = await _mediator.Send(query);
+
+            if (projectDetails == null)
+                return NotFound();
+
+            return Ok(projectDetails);
         }
 
         [HttpGet("projectsByClient/{clientId}")]

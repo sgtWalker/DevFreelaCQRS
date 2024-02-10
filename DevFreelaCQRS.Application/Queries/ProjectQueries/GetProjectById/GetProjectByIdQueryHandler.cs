@@ -4,7 +4,7 @@ using MediatR;
 
 namespace DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectById
 {
-    public class GetProjectByIdQueryHandler : IRequestHandler<GetProjectByIdQuery, ProjectDetailsViewModel>
+    public class GetProjectByIdQueryHandler : IRequestHandler<GetProjectByIdQuery, ProjectViewModel>
     {
         private readonly IProjectRepository _repository;
 
@@ -13,23 +13,17 @@ namespace DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectById
             _repository = repository;
         }
 
-        public async Task<ProjectDetailsViewModel> Handle(GetProjectByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ProjectViewModel> Handle(GetProjectByIdQuery request, CancellationToken cancellationToken)
         {
-            var project = await _repository.GetDetailsByIdAsync(request.Id);
+            var project = await _repository.GetByIdAsync(request.Id);
 
             if (project == null)
                 return null;
 
-            return new ProjectDetailsViewModel(
+            return new ProjectViewModel(
                 project.Id,
                 project.Title,
-                project.Description,
-                project.StartedAt,
-                project.FinishedAt,
-                project.TotalCost,
-                project.Status,
-                project.Client.FullName,
-                project.Freelancer.FullName
+                project.CreatedAt
                 );
         }
     }

@@ -1,6 +1,8 @@
 ﻿using DevFreelaCQRS.Application.Queries.ProjectQueries.GetAllProjects;
+using DevFreelaCQRS.Application.ViewModels;
 using DevFreelaCQRS.Core.Entities;
 using DevFreelaCQRS.Core.Repositories;
+using DevFreelaCQRS.UnitTests.Helpers;
 using Moq;
 
 namespace DevFreelaCQRS.UnitTests.Application.Queries
@@ -11,7 +13,7 @@ namespace DevFreelaCQRS.UnitTests.Application.Queries
         public async Task ThreeProjectsExists_CallGetAllProjectsAsync_ReturnThreeProjectsViewModels()
         {
             //Arrange
-            var projects = GetProjectsList(3);
+            var projects = ProjectTestsHelper.GetProjectsList(3);
 
             var projectRepositoryMock = new Mock<IProjectRepository>();
             projectRepositoryMock
@@ -32,16 +34,27 @@ namespace DevFreelaCQRS.UnitTests.Application.Queries
             projectRepositoryMock.Verify(pr => pr.GetAllAsync().Result, Times.Once);
         }
 
-        private List<Project> GetProjectsList(int quantityToAdd)
+        [Fact]
+        public async Task SinceThereAreNoProjects_Executed_ReturnEmptyListOfProjectViewModel()
         {
-            var projects = new List<Project>();
+            //Arrange
+            var projectRepositoryMock = new Mock<IProjectRepository>();
+            projectRepositoryMock
+                .Setup(pr => pr.GetAllAsync().Result)
+                .Returns(new List<Project>());
 
-            for (int i = 1; i <= quantityToAdd; i++)
-            {
-                projects.Add(new Project($"Project Test {i}", $"Test Project Description {i}", Guid.NewGuid(), Guid.NewGuid(), 10000));
-            }
+            var getAllProjectsQuery = new GetAllProjectsQuery();
+            var getAllProjectsQueryHandler = new GetAllProjectsQueryHandler(projectRepositoryMock.Object);
 
-            return projects;
+            //Act
+            var projectViewModelList = await getAllProjectsQueryHandler.Handle(getAllProjectsQuery, new CancellationToken());
+
+            //Assert
+            Assert.NotNull(projectViewModelList);
+            Assert.Empty(projectViewModelList);
+
+            projectRepositoryMock.Verify(pr => pr.GetAllAsync().Result, Times.Once);
+
         }
     }
 }

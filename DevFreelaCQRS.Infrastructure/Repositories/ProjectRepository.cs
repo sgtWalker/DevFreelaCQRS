@@ -28,7 +28,7 @@ namespace DevFreelaCQRS.Infrastructure.Repositories
             return await _context.Projects
                 .Include(p => p.Client)
                 .Include(p => p.Freelancer)
-                .SingleOrDefaultAsync(p => p.Id == id);
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<List<Project>> GetAllByClientIdAsync(Guid clientId) => await _context.Projects.Where(p => p.ClientId == clientId).ToListAsync();
