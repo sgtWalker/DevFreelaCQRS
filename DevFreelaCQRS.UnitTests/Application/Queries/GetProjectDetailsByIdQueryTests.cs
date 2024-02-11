@@ -1,4 +1,5 @@
-﻿using DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectDetailsById;
+﻿using DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectById;
+using DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectDetailsById;
 using DevFreelaCQRS.Core.Repositories;
 using DevFreelaCQRS.UnitTests.Helpers;
 using Moq;
@@ -29,6 +30,22 @@ namespace DevFreelaCQRS.UnitTests.Application.Queries
             Assert.Equal(project.Id, projectDetails.Id);
 
             projectRepositoryMock.Verify(pr => pr.GetDetailsByIdAsync(project.Id), Times.Once());
+        }
+
+        [Fact]
+        public async Task GivenThatTheProjectNotExists_Executed_ReturnNull()
+        {
+            //Arrange
+            var projectRepositoryMock = new Mock<IProjectRepository>();
+
+            var getProjectDetailsByIdQuery = new GetProjectDetailsByIdQuery(Guid.Empty);
+            var getProjectDetailsByIdQueryHandler = new GetProjectDetailsByIdQueryHandler(projectRepositoryMock.Object);
+
+            //Act
+            var projectViewModel = await getProjectDetailsByIdQueryHandler.Handle(getProjectDetailsByIdQuery, new CancellationToken());
+
+            //Assert
+            Assert.Null(projectViewModel);
         }
     }
 }
