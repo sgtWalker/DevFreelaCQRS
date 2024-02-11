@@ -1,15 +1,7 @@
-﻿using DevFreelaCQRS.Application.Queries.ProjectQueries.GetAllProjects;
-using DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectById;
-using DevFreelaCQRS.Application.ViewModels;
-using DevFreelaCQRS.Core.Entities;
+﻿using DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectById;
 using DevFreelaCQRS.Core.Repositories;
 using DevFreelaCQRS.UnitTests.Helpers;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DevFreelaCQRS.UnitTests.Application.Queries
 {

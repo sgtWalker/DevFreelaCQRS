@@ -1,5 +1,4 @@
 ﻿using DevFreelaCQRS.Application.Queries.ProjectQueries.GetAllProjects;
-using DevFreelaCQRS.Application.ViewModels;
 using DevFreelaCQRS.Core.Entities;
 using DevFreelaCQRS.Core.Repositories;
 using DevFreelaCQRS.UnitTests.Helpers;

@@ -6,7 +6,7 @@ namespace DevFreelaCQRS.Core.Entities
     {
         protected BaseEntity() { }
 
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; private set; }
         public DateTime? DeletedAt { get; private set; }

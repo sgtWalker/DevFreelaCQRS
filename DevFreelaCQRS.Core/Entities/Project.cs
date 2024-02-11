@@ -17,6 +17,36 @@ namespace DevFreelaCQRS.Core.Entities
             CreatedAt = DateTime.Now;
         }
 
+        public Project(Guid id, string title, string description, Guid clientId, Guid freelancerId, decimal totalCost)
+        {
+            Id = id;
+            Title = title;
+            Description = description;
+            ClientId = clientId;
+            FreelancerId = freelancerId;
+            TotalCost = totalCost;
+            Status = ProjectStatus.Created;
+            Comments = new List<ProjectComment>();
+            Active = true;
+            CreatedAt = DateTime.Now;
+        }
+
+        public Project(Guid id, string title, string description, Guid clientId, Guid freelancerId, decimal totalCost, User client, User freelancer)
+        {
+            Id = id;
+            Title = title;
+            Description = description;
+            ClientId = clientId;
+            FreelancerId = freelancerId;
+            TotalCost = totalCost;
+            Client = client;
+            Freelancer = freelancer;
+            Status = ProjectStatus.Created;
+            Comments = new List<ProjectComment>();
+            Active = true;
+            CreatedAt = DateTime.Now;
+        }
+
         public string Title { get; private set; }
         public string Description { get; private set; }
         public Guid ClientId { get; private set; }
