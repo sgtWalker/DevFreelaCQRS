@@ -1,4 +1,7 @@
 ﻿using DevFreelaCQRS.Core.Entities;
+using Microsoft.AspNetCore.Mvc.Routing;
+using System.Net.NetworkInformation;
+using System.Security.Cryptography.X509Certificates;
 
 namespace DevFreelaCQRS.UnitTests.Helpers
 {
@@ -40,5 +43,19 @@ namespace DevFreelaCQRS.UnitTests.Helpers
 
             return project;
         }
+
+        public static List<Project> GetProjectsWithClientAndFreelancer(User client, User freelancer, int quantityProjectsToCreate)
+        {
+            var projects = new List<Project>();
+
+            for (int i = 1; i <= quantityProjectsToCreate; i++)
+            {
+                projects.Add(new Project(Guid.NewGuid(), $"{PROJECT_NAME} {i}", $"{PROJECT_DESCRIPTION} {i}", Guid.NewGuid(), Guid.NewGuid(), TOTAL_COST, client, freelancer));
+            }
+
+            return projects;
+        }
+        public static User GetClient() => new User(Guid.NewGuid(), CLIENT_NAME, CLIENT_EMAIL, new DateTime(1990, 03, 08), DEFAULT_PASSWORD, CLIENT_ROLE);
+        public static User GetFreelancer() => new User(Guid.NewGuid(), FREELANCER_NAME, FREELANCER_EMAIL, new DateTime(1990, 03, 08), DEFAULT_PASSWORD, FREELANCER_ROLE);
     }
 }

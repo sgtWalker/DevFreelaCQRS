@@ -16,6 +16,21 @@
             Role = role;
         }
 
+        public User(Guid id, string fullName, string email, DateTime birthDate, string password, string role)
+        {
+            Id = id;
+            FullName = fullName;
+            Email = email;
+            BirthDate = birthDate;
+            Skills = new List<UserSkill>();
+            OwnedProjects = new List<Project>();
+            FreelanceProjects = new List<Project>();
+            Active = true;
+            CreatedAt = DateTime.Now;
+            Password = password;
+            Role = role;
+        }
+
         public string FullName { get; private set; }
         public string Email { get; private set; }
         public DateTime BirthDate { get; private set; }
