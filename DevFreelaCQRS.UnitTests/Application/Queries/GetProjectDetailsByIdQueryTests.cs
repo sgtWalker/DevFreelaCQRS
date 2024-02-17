@@ -1,5 +1,4 @@
-﻿using DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectById;
-using DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectDetailsById;
+﻿using DevFreelaCQRS.Application.Queries.ProjectQueries.GetProjectDetailsById;
 using DevFreelaCQRS.Core.Repositories;
 using DevFreelaCQRS.UnitTests.Helpers;
 using Moq;

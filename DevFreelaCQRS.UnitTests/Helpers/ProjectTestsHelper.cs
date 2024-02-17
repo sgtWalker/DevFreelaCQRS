@@ -1,6 +1,7 @@
 ﻿using DevFreelaCQRS.Core.Entities;
 using Microsoft.AspNetCore.Mvc.Routing;
 using System.Net.NetworkInformation;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 
 namespace DevFreelaCQRS.UnitTests.Helpers
@@ -33,6 +34,42 @@ namespace DevFreelaCQRS.UnitTests.Helpers
             return projects;
         }
 
+        public static List<Project> GetProjectsListWithSpecificDescription(int quantityToAdd, int quantityToAddSameDescription, string specificDescription)
+        {
+            if (quantityToAdd < quantityToAddSameDescription)
+                throw new Exception("quantityToAdd is less than the quantityToAddSameDescription!");
+
+            var projects = new List<Project>();
+
+            for (int i = 1; i <= quantityToAdd; i++)
+            {
+                if (i <= quantityToAddSameDescription)
+                    projects.Add(new Project($"{PROJECT_NAME} {i}", specificDescription, Guid.NewGuid(), Guid.NewGuid(), TOTAL_COST));
+                else
+                    projects.Add(new Project($"{PROJECT_NAME} {i}", $"{PROJECT_DESCRIPTION} {i}", Guid.NewGuid(), Guid.NewGuid(), TOTAL_COST));
+            }
+
+            return projects;
+        }
+
+        public static List<Project> GetProjectsListWithSpecificTitle(int quantityToAdd, int quantityToAddSameTitle, string specificTitle)
+        {
+            if (quantityToAdd < quantityToAddSameTitle)
+                throw new Exception("quantityToAdd is less than the quantityToAddSameDescription!");
+
+            var projects = new List<Project>();
+
+            for (int i = 1; i <= quantityToAdd; i++)
+            {
+                if (i <= quantityToAddSameTitle)
+                    projects.Add(new Project($"{specificTitle}", $"{PROJECT_DESCRIPTION} {i}", Guid.NewGuid(), Guid.NewGuid(), TOTAL_COST));
+                else
+                    projects.Add(new Project($"{PROJECT_NAME} {i}", $"{PROJECT_DESCRIPTION} {i}", Guid.NewGuid(), Guid.NewGuid(), TOTAL_COST));
+            }
+
+            return projects;
+        }
+
         public static Project GetProjectWithDetails()
         {
             var client = new User(CLIENT_NAME, CLIENT_EMAIL, new DateTime(1993, 02, 21), DEFAULT_PASSWORD, CLIENT_ROLE);
@@ -50,7 +87,7 @@ namespace DevFreelaCQRS.UnitTests.Helpers
 
             for (int i = 1; i <= quantityProjectsToCreate; i++)
             {
-                projects.Add(new Project(Guid.NewGuid(), $"{PROJECT_NAME} {i}", $"{PROJECT_DESCRIPTION} {i}", Guid.NewGuid(), Guid.NewGuid(), TOTAL_COST, client, freelancer));
+                projects.Add(new Project(Guid.NewGuid(), $"{PROJECT_NAME} {i}", $"{PROJECT_DESCRIPTION} {i}", client.Id, freelancer.Id, TOTAL_COST, client, freelancer));
             }
 
             return projects;
