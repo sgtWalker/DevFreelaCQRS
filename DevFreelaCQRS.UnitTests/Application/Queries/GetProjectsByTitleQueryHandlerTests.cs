@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DevFreelaCQRS.UnitTests.Application.Queries
 {
-    public class GetProjectsByTitleQueryTests
+    public class GetProjectsByTitleQueryHandlerTests
     {
         private const string SPECIFIC_TITLE = "Vai Corinthians!";
 

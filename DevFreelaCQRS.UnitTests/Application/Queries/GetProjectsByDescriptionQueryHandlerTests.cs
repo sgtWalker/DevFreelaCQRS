@@ -6,7 +6,7 @@ using Moq;
 
 namespace DevFreelaCQRS.UnitTests.Application.Queries
 {
-    public class GetProjectsByDescriptionQueryTests
+    public class GetProjectsByDescriptionQueryHandlerTests
     {
         private const string SPECIFIC_DESCRIPTION = "Projeto Vai Corinthians!";
         private static bool ContainsSpecificDescription(Project s) => s.Description.Contains(SPECIFIC_DESCRIPTION);

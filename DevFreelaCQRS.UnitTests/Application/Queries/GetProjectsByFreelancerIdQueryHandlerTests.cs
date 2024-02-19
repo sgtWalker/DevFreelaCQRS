@@ -6,7 +6,7 @@ using Moq;
 
 namespace DevFreelaCQRS.UnitTests.Application.Queries
 {
-    public class GetProjectsByFreelancerIdQueryTests
+    public class GetProjectsByFreelancerIdQueryHandlerTests
     {
         [Fact]
         public async Task FreelancerExistsAndHasAtLeastOneProject_Executed_ReturnListOfProjectViewModel()

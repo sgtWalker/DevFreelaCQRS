@@ -5,7 +5,7 @@ using Moq;
 
 namespace DevFreelaCQRS.UnitTests.Application.Queries
 {
-    public class GetProjectDetailsByIdQueryTests
+    public class GetProjectDetailsByIdQueryHandlerTests
     {
         [Fact]
         public async Task GivenThatTheProjectExists_Executed_ReturnProjectDetailsViewModel()

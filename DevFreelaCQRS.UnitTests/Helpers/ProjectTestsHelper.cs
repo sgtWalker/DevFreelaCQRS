@@ -18,7 +18,9 @@ namespace DevFreelaCQRS.UnitTests.Helpers
         private const string FREELANCER_EMAIL = "freelancer@freelancer.com.br";
         private const string FREELANCER_ROLE = "freelancer";
         private const string DEFAULT_PASSWORD = "P@ss09289";
-        
+
+
+        public static Project GetNullProject() => null;
 
         public static Project GetProject() => new Project(Guid.NewGuid(), PROJECT_NAME, PROJECT_DESCRIPTION, Guid.NewGuid(), Guid.NewGuid(), TOTAL_COST);
 
