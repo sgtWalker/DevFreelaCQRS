@@ -1,4 +1,4 @@
-﻿using DevFreelaCQRS.Application.Commands.ProjectCommands.FinishProject;
+﻿using DevFreelaCQRS.Application.Commands.ProjectCommands.StartProject;
 using DevFreelaCQRS.Core.Enums;
 using DevFreelaCQRS.Core.Repositories;
 using DevFreelaCQRS.UnitTests.Helpers;
@@ -6,10 +6,10 @@ using Moq;
 
 namespace DevFreelaCQRS.UnitTests.Application.Commands
 {
-    public class FinishProjectCommandHandlerTests
+    public class StartProjectCommandHandlerTests
     {
         [Fact]
-        public async Task ThereIsAProjectCreated_Executed_DoNotFinishProject()
+        public async Task ThereIsAProjectCreated_Executed_ChangeProjectStatusToInProgress()
         {
             //Arrange
             var project = ProjectTestsHelper.GetProject();
@@ -19,18 +19,18 @@ namespace DevFreelaCQRS.UnitTests.Application.Commands
                 .Setup(pr => pr.GetByIdAsync(project.Id).Result)
                 .Returns(project);
 
-            var finishProjectCommand = new FinishProjectCommand(project.Id);
-            var finishProjectCommandHandler = new FinishProjectCommandHandler(projectRepositoryMock.Object);
+            var startProjectCommand = new StartProjectCommand(project.Id);
+            var startProjectCommandHandler = new StartProjectCommandHandler(projectRepositoryMock.Object);
 
             //Act
-            await finishProjectCommandHandler.Handle(finishProjectCommand, new CancellationToken());
+            await startProjectCommandHandler.Handle(startProjectCommand, new CancellationToken());
 
             //Assert
-            Assert.True(project.Status == ProjectStatus.Created);
+            Assert.True(project.Status == ProjectStatus.InProgress);
         }
 
         [Fact]
-        public async Task ThereIsAProjectInProgress_Executed_FinishProject()
+        public async Task ThereIsAProjectFinished_Executed_DoNotChangeProjectStatusToInProgress()
         {
             //Arrange
             var project = ProjectTestsHelper.GetProject();
@@ -40,12 +40,13 @@ namespace DevFreelaCQRS.UnitTests.Application.Commands
                 .Setup(pr => pr.GetByIdAsync(project.Id).Result)
                 .Returns(project);
 
-            var finishProjectCommand = new FinishProjectCommand(project.Id);
-            var finishProjectCommandHandler = new FinishProjectCommandHandler(projectRepositoryMock.Object);
+            var startProjectCommand = new StartProjectCommand(project.Id);
+            var startProjectCommandHandler = new StartProjectCommandHandler(projectRepositoryMock.Object);
 
             //Act
             project.Start();
-            await finishProjectCommandHandler.Handle(finishProjectCommand, new CancellationToken());
+            project.Finish();
+            await startProjectCommandHandler.Handle(startProjectCommand, new CancellationToken());
 
             //Assert
             Assert.True(project.Status == ProjectStatus.Finished);
@@ -63,11 +64,11 @@ namespace DevFreelaCQRS.UnitTests.Application.Commands
                 .Setup(pr => pr.GetByIdAsync(fakeProjectId).Result)
                 .Returns(project);
 
-            var finishProjectCommand = new FinishProjectCommand(fakeProjectId);
-            var finishProjectCommandHandler = new FinishProjectCommandHandler(projectRepositoryMock.Object);
+            var startProjectCommand = new StartProjectCommand(fakeProjectId);
+            var startProjectCommandHandler = new StartProjectCommandHandler(projectRepositoryMock.Object);
 
             //Act
-            await finishProjectCommandHandler.Handle(finishProjectCommand, new CancellationToken());
+            await startProjectCommandHandler.Handle(startProjectCommand, new CancellationToken());
 
             //Assert
             Assert.Null(project);

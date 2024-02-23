@@ -4,8 +4,9 @@ namespace DevFreelaCQRS.Application.Commands.ProjectCommands.UpdateProject
 {
     public class UpdateProjectCommand : IRequest<Unit>
     {
-        public UpdateProjectCommand(string title, string description, decimal totalCost)
+        public UpdateProjectCommand(Guid id, string title, string description, decimal totalCost)
         {
+            Id = id;
             Title = title;
             Description = description;
             TotalCost = totalCost;
