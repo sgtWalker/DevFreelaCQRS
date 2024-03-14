@@ -54,6 +54,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+builder.Services.AddHttpClient();
 var connectionString = builder.Configuration.GetConnectionString("DevFreelaCQRSConnection");
 builder.Services.AddDbContext<DevFreelaCQRSDbContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
@@ -61,6 +62,7 @@ builder.Services.AddScoped<IProjectCommentRepository, ProjectCommentRepository>(
 builder.Services.AddScoped<ISkillRepository, SkillRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IPaymentService, IPaymentService>();
 
 builder.Services.AddMediatR(typeof(CreateProjectCommand));
 builder.Services.AddControllers(options => options.Filters.Add(typeof(ValidationFilter)))
