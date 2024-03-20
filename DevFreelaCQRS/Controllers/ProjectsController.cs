@@ -45,7 +45,7 @@ namespace DevFreelaCQRS.API.Controllers
             return Ok(projects);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("projectsById/{id}")]
         [Authorize(Roles = "client, freelancer")]
         public async Task<IActionResult> GetById(Guid id)
         {

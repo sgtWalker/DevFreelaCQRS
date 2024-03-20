@@ -76,7 +76,7 @@ namespace DevFreelaCQRS.Core.Entities
 
         public void Finish()
         {
-            if (Status == ProjectStatus.InProgress)
+            if (Status == ProjectStatus.PaymentPending)
             {
                 Status = ProjectStatus.Finished;
                 FinishedAt = DateTime.Now;
@@ -88,6 +88,12 @@ namespace DevFreelaCQRS.Core.Entities
             Title = title;
             Description = description;
             TotalCost = totalCost;
+        }
+
+        public void SetPaymentPending()
+        {
+            Status = ProjectStatus.PaymentPending;
+            FinishedAt = null;
         }
     }
 }

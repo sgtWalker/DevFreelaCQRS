@@ -1,6 +1,7 @@
 ﻿using DevFreelaCQRS.Application.Commands.ProjectCommands.FinishProject;
 using DevFreelaCQRS.Core.Enums;
 using DevFreelaCQRS.Core.Repositories;
+using DevFreelaCQRS.Core.Services;
 using DevFreelaCQRS.UnitTests.Helpers;
 using Moq;
 
@@ -19,8 +20,10 @@ namespace DevFreelaCQRS.UnitTests.Application.Commands
                 .Setup(pr => pr.GetByIdAsync(project.Id).Result)
                 .Returns(project);
 
+            var paymentServiceMock = new Mock<IPaymentService>();
+
             var finishProjectCommand = new FinishProjectCommand(project.Id);
-            var finishProjectCommandHandler = new FinishProjectCommandHandler(projectRepositoryMock.Object);
+            var finishProjectCommandHandler = new FinishProjectCommandHandler(projectRepositoryMock.Object, paymentServiceMock.Object);
 
             //Act
             await finishProjectCommandHandler.Handle(finishProjectCommand, new CancellationToken());
@@ -40,15 +43,17 @@ namespace DevFreelaCQRS.UnitTests.Application.Commands
                 .Setup(pr => pr.GetByIdAsync(project.Id).Result)
                 .Returns(project);
 
+            var paymentServiceMock = new Mock<IPaymentService>();
+
             var finishProjectCommand = new FinishProjectCommand(project.Id);
-            var finishProjectCommandHandler = new FinishProjectCommandHandler(projectRepositoryMock.Object);
+            var finishProjectCommandHandler = new FinishProjectCommandHandler(projectRepositoryMock.Object, paymentServiceMock.Object);
 
             //Act
             project.Start();
             await finishProjectCommandHandler.Handle(finishProjectCommand, new CancellationToken());
 
             //Assert
-            Assert.True(project.Status == ProjectStatus.Finished);
+            Assert.True(project.Status == ProjectStatus.PaymentPending);
         }
 
         [Fact]
@@ -63,8 +68,10 @@ namespace DevFreelaCQRS.UnitTests.Application.Commands
                 .Setup(pr => pr.GetByIdAsync(fakeProjectId).Result)
                 .Returns(project);
 
+            var paymentServiceMock = new Mock<IPaymentService>();
+
             var finishProjectCommand = new FinishProjectCommand(fakeProjectId);
-            var finishProjectCommandHandler = new FinishProjectCommandHandler(projectRepositoryMock.Object);
+            var finishProjectCommandHandler = new FinishProjectCommandHandler(projectRepositoryMock.Object, paymentServiceMock.Object);
 
             //Act
             await finishProjectCommandHandler.Handle(finishProjectCommand, new CancellationToken());

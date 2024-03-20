@@ -8,25 +8,19 @@ namespace DevFreelaCQRS.Infrastructure.Payments
 {
     public class PaymentService : IPaymentService
     {
-        private readonly IHttpClientFactory _httpClient;
-        private readonly string _paymentBaseUrl;
+        private readonly IMessageBusService _messageBusService;
+        private const string QUEUE_NAME = "payments";
 
-        public PaymentService(IHttpClientFactory httpClient, IConfiguration configuration)
+        public PaymentService(IMessageBusService messageBusService)
         {
-            _httpClient = httpClient;
-            _paymentBaseUrl = configuration.GetSection("Services:Payments").Value;
+            _messageBusService = messageBusService;
         }
 
-        public async Task<bool> ProcessPayment(PaymentInfoDTO paymentInfoDTO)
+        public void ProcessPayment(PaymentInfoDTO paymentInfoDTO)
         {
-            var url = $"{_paymentBaseUrl}/api/payments";
-            var paymentInfoJson = JsonSerializer.Serialize(paymentInfoDTO);
+            var paymentMessage = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(paymentInfoDTO));
 
-            var paymentInfoContent = new StringContent(paymentInfoJson, Encoding.UTF8, "application/json");
-            var httpClient = _httpClient.CreateClient("Payments");
-
-            var response = await httpClient.PostAsync(url, paymentInfoContent);
-            return response.IsSuccessStatusCode;
+            _messageBusService.Publish(QUEUE_NAME, paymentMessage);
         }
     }
 }

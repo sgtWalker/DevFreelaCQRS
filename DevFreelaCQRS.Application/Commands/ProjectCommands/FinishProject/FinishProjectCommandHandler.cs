@@ -24,12 +24,15 @@ namespace DevFreelaCQRS.Application.Commands.ProjectCommands.FinishProject
             if (project == null)
                 return Unit.Value;
 
-            project.Finish();
+            if (project.Status == ProjectStatus.Created || project.Status == ProjectStatus.Finished)
+                return Unit.Value;
 
-            if (project.Status == ProjectStatus.Finished && project.TotalCost > 0)
-                await _paymentService.ProcessPayment(new PaymentInfoDTO(project.Id, "", "", "", "", project.TotalCost));
+            _paymentService.ProcessPayment(new PaymentInfoDTO(project.Id, "", "", "", "", project.TotalCost));
+
+            project.SetPaymentPending();
 
             await _repository.SaveChangesAsync();
+
             return Unit.Value;
         }
     }

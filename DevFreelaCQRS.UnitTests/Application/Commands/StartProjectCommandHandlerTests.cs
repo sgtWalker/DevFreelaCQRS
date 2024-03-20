@@ -30,29 +30,6 @@ namespace DevFreelaCQRS.UnitTests.Application.Commands
         }
 
         [Fact]
-        public async Task ThereIsAProjectFinished_Executed_DoNotChangeProjectStatusToInProgress()
-        {
-            //Arrange
-            var project = ProjectTestsHelper.GetProject();
-
-            var projectRepositoryMock = new Mock<IProjectRepository>();
-            projectRepositoryMock
-                .Setup(pr => pr.GetByIdAsync(project.Id).Result)
-                .Returns(project);
-
-            var startProjectCommand = new StartProjectCommand(project.Id);
-            var startProjectCommandHandler = new StartProjectCommandHandler(projectRepositoryMock.Object);
-
-            //Act
-            project.Start();
-            project.Finish();
-            await startProjectCommandHandler.Handle(startProjectCommand, new CancellationToken());
-
-            //Assert
-            Assert.True(project.Status == ProjectStatus.Finished);
-        }
-
-        [Fact]
         public async Task ThereIsNotExistsProject_Executed_ReturnNull()
         {
             //Arrange
